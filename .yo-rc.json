@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "James Liu",
+      "authorEmail": "james@jamesliu.ca",
+      "authorUrl": "jamesliu.ca"
+    }
+  }
+}
