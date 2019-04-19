@@ -4,7 +4,7 @@ const URL = require('url').URL || require('whatwg-url').URL;
 
 interface BaseParams {
   token?: string;
-  locale?: string;
+  locale?: Locale;
   expand?: string;
 }
 
@@ -35,8 +35,26 @@ enum TeamID {
   GUANGZHOU_CHARGE = 7699,
 };
 
+
+enum Locale {
+  DE_DE = 'de_DE',
+  EN_US = 'en_US',
+  EN_GB = 'en_GB',
+  ES_ES = 'es_ES',
+  ES_MX = 'es_MX',
+  FR_FR = 'fr_FR',
+  IT_IT = 'it_IT',
+  PT_BR = 'pt_BR',
+  PL_PL = 'pl_PL',
+  RU_RU = 'ru_RU',
+  KO_KR = 'ko_KR',
+  JA_JP = 'ja_JP',
+  ZH_TW = 'zh_TW',
+  ZH_CH = 'zh_CH', // ZH_CH is done via the useChina option.
+};
+
 export class OverwatchLeague {
-  private locale: string;
+  private locale: Locale;
   private apiBase: string;
   private token: string;
 
@@ -194,22 +212,7 @@ export class OverwatchLeague {
     7699: 'Guangzhou Charge'
   };
 
-  public static Locales = {
-    DE_DE: 'de_DE',
-    EN_US: 'en_US',
-    EN_GB: 'en_GB',
-    ES_ES: 'es_ES',
-    ES_MX: 'es_MX',
-    FR_FR: 'fr_FR',
-    IT_IT: 'it_IT',
-    PT_BR: 'pt_BR',
-    PL_PL: 'pl_PL',
-    RU_RU: 'ru_RU',
-    KO_KR: 'ko_KR',
-    JA_JP: 'ja_JP',
-    ZH_TW: 'zh_TW'
-    // ZH_CH is done via the useChina option.
-  };
+  public static Locales = Locale;
 
   public static Match = {
     State: {

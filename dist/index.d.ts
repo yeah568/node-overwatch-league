@@ -20,6 +20,22 @@ declare enum TeamID {
     ATLANTA_REIGN = 7698,
     GUANGZHOU_CHARGE = 7699
 }
+declare enum Locale {
+    DE_DE = "de_DE",
+    EN_US = "en_US",
+    EN_GB = "en_GB",
+    ES_ES = "es_ES",
+    ES_MX = "es_MX",
+    FR_FR = "fr_FR",
+    IT_IT = "it_IT",
+    PT_BR = "pt_BR",
+    PL_PL = "pl_PL",
+    RU_RU = "ru_RU",
+    KO_KR = "ko_KR",
+    JA_JP = "ja_JP",
+    ZH_TW = "zh_TW",
+    ZH_CH = "zh_CH"
+}
 export declare class OverwatchLeague {
     private locale;
     private apiBase;
@@ -29,7 +45,7 @@ export declare class OverwatchLeague {
      * @param {Object} options
      */
     constructor({ locale, token, useChina }?: {
-        locale?: string | undefined;
+        locale?: Locale | undefined;
         token?: string | undefined;
         useChina?: boolean | undefined;
     });
@@ -75,21 +91,7 @@ export declare class OverwatchLeague {
         7698: string;
         7699: string;
     };
-    static Locales: {
-        DE_DE: string;
-        EN_US: string;
-        EN_GB: string;
-        ES_ES: string;
-        ES_MX: string;
-        FR_FR: string;
-        IT_IT: string;
-        PT_BR: string;
-        PL_PL: string;
-        RU_RU: string;
-        KO_KR: string;
-        JA_JP: string;
-        ZH_TW: string;
-    };
+    static Locales: typeof Locale;
     static Match: {
         State: {
             PENDING: string;

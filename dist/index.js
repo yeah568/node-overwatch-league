@@ -33,6 +33,24 @@ var TeamID;
     TeamID[TeamID["GUANGZHOU_CHARGE"] = 7699] = "GUANGZHOU_CHARGE";
 })(TeamID || (TeamID = {}));
 ;
+var Locale;
+(function (Locale) {
+    Locale["DE_DE"] = "de_DE";
+    Locale["EN_US"] = "en_US";
+    Locale["EN_GB"] = "en_GB";
+    Locale["ES_ES"] = "es_ES";
+    Locale["ES_MX"] = "es_MX";
+    Locale["FR_FR"] = "fr_FR";
+    Locale["IT_IT"] = "it_IT";
+    Locale["PT_BR"] = "pt_BR";
+    Locale["PL_PL"] = "pl_PL";
+    Locale["RU_RU"] = "ru_RU";
+    Locale["KO_KR"] = "ko_KR";
+    Locale["JA_JP"] = "ja_JP";
+    Locale["ZH_TW"] = "zh_TW";
+    Locale["ZH_CH"] = "zh_CH";
+})(Locale || (Locale = {}));
+;
 var OverwatchLeague = /** @class */ (function () {
     /**
      *
@@ -169,22 +187,7 @@ var OverwatchLeague = /** @class */ (function () {
         7698: 'Atlanta Reign',
         7699: 'Guangzhou Charge'
     };
-    OverwatchLeague.Locales = {
-        DE_DE: 'de_DE',
-        EN_US: 'en_US',
-        EN_GB: 'en_GB',
-        ES_ES: 'es_ES',
-        ES_MX: 'es_MX',
-        FR_FR: 'fr_FR',
-        IT_IT: 'it_IT',
-        PT_BR: 'pt_BR',
-        PL_PL: 'pl_PL',
-        RU_RU: 'ru_RU',
-        KO_KR: 'ko_KR',
-        JA_JP: 'ja_JP',
-        ZH_TW: 'zh_TW'
-        // ZH_CH is done via the useChina option.
-    };
+    OverwatchLeague.Locales = Locale;
     OverwatchLeague.Match = {
         State: {
             PENDING: 'PENDING',
