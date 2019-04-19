@@ -9,7 +9,7 @@ A Node wrapper for the Overwatch League API.
 const OverwatchLeague = require('node-overwatch-league');
 const owlClient = new OverwatchLeague();
 
-owlClient.getTeam(OverwatchLeague.teamIDs.FLORIDA_MAYHEM)
+owlClient.getTeam(OverwatchLeague.teamIDs.VANCOUVER_TITANS)
   .then(team => console.log(team));
 ```
 
@@ -47,5 +47,5 @@ Work in progress while the implementation is being fleshed out a bit more.
 The OverwatchLeague class contains some constants as properties to make working with the API a bit easier.
 
 * `OverwatchLeague.teamIDs`: A map of team names to IDs.
-  eg. `OverwatchLeague.teamIDs.FLORIDA_MAYHEM` returns `4407`, the ID for Florida.
+  eg. `OverwatchLeague.teamIDs.VANCOUVER_TITANS` returns `7696`, the ID for Florida.
 * `OverwatchLeague.Match.State`: Match state. Either `PENDING` or `CONCLUDED`.
