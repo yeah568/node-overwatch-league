@@ -1,4 +1,4 @@
-declare enum teamIDs {
+declare enum TeamID {
     DALLAS_FUEL = 4523,
     PHILADELPHIA_FUSION = 4524,
     HOUSTON_OUTLAWS = 4525,
@@ -33,18 +33,10 @@ export declare class OverwatchLeague {
         token?: string | undefined;
         useChina?: boolean | undefined;
     });
-    /**
-     *
-     * @param {string} path
-     */
     getJSON(path: string, expand?: string): Promise<any>;
     getTeams(): Promise<any>;
-    /**
-     *
-     * @param {number} teamID
-     */
-    getTeam(teamID: number): Promise<any>;
-    getTeamV2(teamID: number): Promise<any>;
+    getTeam(teamID: TeamID): Promise<any>;
+    getTeamV2(teamID: TeamID): Promise<any>;
     getRanking(): Promise<any>;
     getStandings(): Promise<any>;
     getStandingsV2(): Promise<any>;
@@ -58,9 +50,9 @@ export declare class OverwatchLeague {
     getVODs(perPage?: number, page?: number): Promise<any>;
     getLiveMatch(): Promise<any>;
     getMaps(): Promise<any>;
-    lastMatchForTeam(teamID: number): Promise<{}>;
-    nextMatchForTeam(teamID: number): Promise<{}>;
-    static teamIDs: typeof teamIDs;
+    lastMatchForTeam(teamID: TeamID): Promise<{}>;
+    nextMatchForTeam(teamID: TeamID): Promise<{}>;
+    static teamIDs: typeof TeamID;
     static teamNames: {
         4523: string;
         4524: string;

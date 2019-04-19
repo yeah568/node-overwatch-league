@@ -9,29 +9,29 @@ var URL = require('url').URL || require('whatwg-url').URL;
 function _matchCompare(a, b) {
     return a.startDate - b.startDate;
 }
-var teamIDs;
-(function (teamIDs) {
-    teamIDs[teamIDs["DALLAS_FUEL"] = 4523] = "DALLAS_FUEL";
-    teamIDs[teamIDs["PHILADELPHIA_FUSION"] = 4524] = "PHILADELPHIA_FUSION";
-    teamIDs[teamIDs["HOUSTON_OUTLAWS"] = 4525] = "HOUSTON_OUTLAWS";
-    teamIDs[teamIDs["BOSTON_UPRISING"] = 4402] = "BOSTON_UPRISING";
-    teamIDs[teamIDs["NEW_YORK_EXCELSIOR"] = 4403] = "NEW_YORK_EXCELSIOR";
-    teamIDs[teamIDs["SAN_FRANCISCO_SHOCK"] = 4404] = "SAN_FRANCISCO_SHOCK";
-    teamIDs[teamIDs["LOS_ANGELES_VALIANT"] = 4405] = "LOS_ANGELES_VALIANT";
-    teamIDs[teamIDs["LOS_ANGELES_GLADIATORS"] = 4406] = "LOS_ANGELES_GLADIATORS";
-    teamIDs[teamIDs["FLORIDA_MAYHEM"] = 4407] = "FLORIDA_MAYHEM";
-    teamIDs[teamIDs["SHANGHAI_DRAGONS"] = 4408] = "SHANGHAI_DRAGONS";
-    teamIDs[teamIDs["SEOUL_DYNASTY"] = 4409] = "SEOUL_DYNASTY";
-    teamIDs[teamIDs["LONDON_SPITFIRE"] = 4410] = "LONDON_SPITFIRE";
-    teamIDs[teamIDs["CHENGDU_HUNTERS"] = 7692] = "CHENGDU_HUNTERS";
-    teamIDs[teamIDs["HANGZHOU_SPARK"] = 7693] = "HANGZHOU_SPARK";
-    teamIDs[teamIDs["PARIS_ETERNAL"] = 7694] = "PARIS_ETERNAL";
-    teamIDs[teamIDs["TORONTO_DEFIANT"] = 7695] = "TORONTO_DEFIANT";
-    teamIDs[teamIDs["VANCOUVER_TITANS"] = 7696] = "VANCOUVER_TITANS";
-    teamIDs[teamIDs["WASHINGTON_JUSTICE"] = 7697] = "WASHINGTON_JUSTICE";
-    teamIDs[teamIDs["ATLANTA_REIGN"] = 7698] = "ATLANTA_REIGN";
-    teamIDs[teamIDs["GUANGZHOU_CHARGE"] = 7699] = "GUANGZHOU_CHARGE";
-})(teamIDs || (teamIDs = {}));
+var TeamID;
+(function (TeamID) {
+    TeamID[TeamID["DALLAS_FUEL"] = 4523] = "DALLAS_FUEL";
+    TeamID[TeamID["PHILADELPHIA_FUSION"] = 4524] = "PHILADELPHIA_FUSION";
+    TeamID[TeamID["HOUSTON_OUTLAWS"] = 4525] = "HOUSTON_OUTLAWS";
+    TeamID[TeamID["BOSTON_UPRISING"] = 4402] = "BOSTON_UPRISING";
+    TeamID[TeamID["NEW_YORK_EXCELSIOR"] = 4403] = "NEW_YORK_EXCELSIOR";
+    TeamID[TeamID["SAN_FRANCISCO_SHOCK"] = 4404] = "SAN_FRANCISCO_SHOCK";
+    TeamID[TeamID["LOS_ANGELES_VALIANT"] = 4405] = "LOS_ANGELES_VALIANT";
+    TeamID[TeamID["LOS_ANGELES_GLADIATORS"] = 4406] = "LOS_ANGELES_GLADIATORS";
+    TeamID[TeamID["FLORIDA_MAYHEM"] = 4407] = "FLORIDA_MAYHEM";
+    TeamID[TeamID["SHANGHAI_DRAGONS"] = 4408] = "SHANGHAI_DRAGONS";
+    TeamID[TeamID["SEOUL_DYNASTY"] = 4409] = "SEOUL_DYNASTY";
+    TeamID[TeamID["LONDON_SPITFIRE"] = 4410] = "LONDON_SPITFIRE";
+    TeamID[TeamID["CHENGDU_HUNTERS"] = 7692] = "CHENGDU_HUNTERS";
+    TeamID[TeamID["HANGZHOU_SPARK"] = 7693] = "HANGZHOU_SPARK";
+    TeamID[TeamID["PARIS_ETERNAL"] = 7694] = "PARIS_ETERNAL";
+    TeamID[TeamID["TORONTO_DEFIANT"] = 7695] = "TORONTO_DEFIANT";
+    TeamID[TeamID["VANCOUVER_TITANS"] = 7696] = "VANCOUVER_TITANS";
+    TeamID[TeamID["WASHINGTON_JUSTICE"] = 7697] = "WASHINGTON_JUSTICE";
+    TeamID[TeamID["ATLANTA_REIGN"] = 7698] = "ATLANTA_REIGN";
+    TeamID[TeamID["GUANGZHOU_CHARGE"] = 7699] = "GUANGZHOU_CHARGE";
+})(TeamID || (TeamID = {}));
 ;
 var OverwatchLeague = /** @class */ (function () {
     /**
@@ -46,10 +46,6 @@ var OverwatchLeague = /** @class */ (function () {
         this.locale = locale;
         this.token = token;
     }
-    /**
-     *
-     * @param {string} path
-     */
     OverwatchLeague.prototype.getJSON = function (path, expand) {
         var url = new URL("" + this.apiBase + path);
         var params = {};
@@ -79,10 +75,6 @@ var OverwatchLeague = /** @class */ (function () {
         // team.content
         return this.getJSON('/teams');
     };
-    /**
-     *
-     * @param {number} teamID
-     */
     OverwatchLeague.prototype.getTeam = function (teamID) {
         return this.getJSON("/team/" + teamID);
     };
@@ -154,7 +146,7 @@ var OverwatchLeague = /** @class */ (function () {
                 .catch(function (err) { return console.log(err); });
         });
     };
-    OverwatchLeague.teamIDs = teamIDs;
+    OverwatchLeague.teamIDs = TeamID;
     OverwatchLeague.teamNames = {
         4523: 'Dallas Fuel',
         4524: 'Philadelphia Fusion',
