@@ -6,64 +6,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var node_fetch_1 = __importDefault(require("node-fetch"));
 // Whatwg-url is a fallback for node <6.13.0
 var URL = require('url').URL || require('whatwg-url').URL;
-function _matchCompare(a, b) {
-    return a.startDate - b.startDate;
-}
-var TeamID;
-(function (TeamID) {
-    TeamID[TeamID["DALLAS_FUEL"] = 4523] = "DALLAS_FUEL";
-    TeamID[TeamID["PHILADELPHIA_FUSION"] = 4524] = "PHILADELPHIA_FUSION";
-    TeamID[TeamID["HOUSTON_OUTLAWS"] = 4525] = "HOUSTON_OUTLAWS";
-    TeamID[TeamID["BOSTON_UPRISING"] = 4402] = "BOSTON_UPRISING";
-    TeamID[TeamID["NEW_YORK_EXCELSIOR"] = 4403] = "NEW_YORK_EXCELSIOR";
-    TeamID[TeamID["SAN_FRANCISCO_SHOCK"] = 4404] = "SAN_FRANCISCO_SHOCK";
-    TeamID[TeamID["LOS_ANGELES_VALIANT"] = 4405] = "LOS_ANGELES_VALIANT";
-    TeamID[TeamID["LOS_ANGELES_GLADIATORS"] = 4406] = "LOS_ANGELES_GLADIATORS";
-    TeamID[TeamID["FLORIDA_MAYHEM"] = 4407] = "FLORIDA_MAYHEM";
-    TeamID[TeamID["SHANGHAI_DRAGONS"] = 4408] = "SHANGHAI_DRAGONS";
-    TeamID[TeamID["SEOUL_DYNASTY"] = 4409] = "SEOUL_DYNASTY";
-    TeamID[TeamID["LONDON_SPITFIRE"] = 4410] = "LONDON_SPITFIRE";
-    TeamID[TeamID["CHENGDU_HUNTERS"] = 7692] = "CHENGDU_HUNTERS";
-    TeamID[TeamID["HANGZHOU_SPARK"] = 7693] = "HANGZHOU_SPARK";
-    TeamID[TeamID["PARIS_ETERNAL"] = 7694] = "PARIS_ETERNAL";
-    TeamID[TeamID["TORONTO_DEFIANT"] = 7695] = "TORONTO_DEFIANT";
-    TeamID[TeamID["VANCOUVER_TITANS"] = 7696] = "VANCOUVER_TITANS";
-    TeamID[TeamID["WASHINGTON_JUSTICE"] = 7697] = "WASHINGTON_JUSTICE";
-    TeamID[TeamID["ATLANTA_REIGN"] = 7698] = "ATLANTA_REIGN";
-    TeamID[TeamID["GUANGZHOU_CHARGE"] = 7699] = "GUANGZHOU_CHARGE";
-})(TeamID || (TeamID = {}));
-;
-var Locale;
-(function (Locale) {
-    Locale["DE_DE"] = "de_DE";
-    Locale["EN_US"] = "en_US";
-    Locale["EN_GB"] = "en_GB";
-    Locale["ES_ES"] = "es_ES";
-    Locale["ES_MX"] = "es_MX";
-    Locale["FR_FR"] = "fr_FR";
-    Locale["IT_IT"] = "it_IT";
-    Locale["PT_BR"] = "pt_BR";
-    Locale["PL_PL"] = "pl_PL";
-    Locale["RU_RU"] = "ru_RU";
-    Locale["KO_KR"] = "ko_KR";
-    Locale["JA_JP"] = "ja_JP";
-    Locale["ZH_TW"] = "zh_TW";
-    Locale["ZH_CH"] = "zh_CH";
-})(Locale || (Locale = {}));
-;
+var constants_1 = require("./constants");
 var OverwatchLeague = /** @class */ (function () {
-    /**
-     *
-     * @param {Object} options
-     */
     function OverwatchLeague(_a) {
-        var _b = _a === void 0 ? {} : _a, _c = _b.locale, locale = _c === void 0 ? OverwatchLeague.Locales.EN_US : _c, _d = _b.token, token = _d === void 0 ? '' : _d, _e = _b.useChina, useChina = _e === void 0 ? false : _e;
+        var _b = _a === void 0 ? {} : _a, _c = _b.locale, locale = _c === void 0 ? constants_1.Locale.EN_US : _c, _d = _b.token, token = _d === void 0 ? '' : _d, _e = _b.useChina, useChina = _e === void 0 ? false : _e;
         this.apiBase = useChina
             ? 'https://api.overwatchleague.cn'
             : 'https://api.overwatchleague.com';
         this.locale = locale;
         this.token = token;
     }
+    OverwatchLeague.prototype.matchCompare = function (a, b) {
+        return a.startDate - b.startDate;
+    };
     OverwatchLeague.prototype.getJSON = function (path, expand) {
         var url = new URL("" + this.apiBase + path);
         var params = {};
@@ -113,10 +68,6 @@ var OverwatchLeague = /** @class */ (function () {
     OverwatchLeague.prototype.getMatches = function () {
         return this.getJSON("/matches");
     };
-    /**
-     *
-     * @param {number} matchID
-     */
     OverwatchLeague.prototype.getMatch = function (matchID, expand) {
         return this.getJSON("/match/" + matchID, expand);
     };
@@ -144,7 +95,7 @@ var OverwatchLeague = /** @class */ (function () {
             _this.getTeam(teamID)
                 .then(function (data) {
                 var schedule = data.schedule;
-                schedule.sort(_matchCompare);
+                schedule.sort(_this.matchCompare);
                 return resolve(schedule
                     .filter(function (match) { return match.state === OverwatchLeague.Match.State.CONCLUDED; })
                     .pop());
@@ -158,13 +109,13 @@ var OverwatchLeague = /** @class */ (function () {
             _this.getTeam(teamID)
                 .then(function (data) {
                 var schedule = data.schedule;
-                schedule.sort(_matchCompare);
+                schedule.sort(_this.matchCompare);
                 return resolve(schedule.find(function (match) { return match.state === OverwatchLeague.Match.State.PENDING; }));
             })
                 .catch(function (err) { return console.log(err); });
         });
     };
-    OverwatchLeague.teamIDs = TeamID;
+    OverwatchLeague.teamIDs = constants_1.TeamID;
     OverwatchLeague.teamNames = {
         4523: 'Dallas Fuel',
         4524: 'Philadelphia Fusion',
@@ -187,7 +138,7 @@ var OverwatchLeague = /** @class */ (function () {
         7698: 'Atlanta Reign',
         7699: 'Guangzhou Charge'
     };
-    OverwatchLeague.Locales = Locale;
+    OverwatchLeague.Locales = constants_1.Locale;
     OverwatchLeague.Match = {
         State: {
             PENDING: 'PENDING',

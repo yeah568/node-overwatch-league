@@ -2,68 +2,25 @@ import fetch from 'node-fetch';
 // Whatwg-url is a fallback for node <6.13.0
 const URL = require('url').URL || require('whatwg-url').URL;
 
+import { TeamID, Locale } from './constants';
+
 interface BaseParams {
   token?: string;
   locale?: Locale;
   expand?: string;
 }
 
-function _matchCompare(a: any, b: any) {
-  return a.startDate - b.startDate;
-}
-
-enum TeamID {
-  DALLAS_FUEL = 4523,
-  PHILADELPHIA_FUSION = 4524,
-  HOUSTON_OUTLAWS = 4525,
-  BOSTON_UPRISING = 4402,
-  NEW_YORK_EXCELSIOR = 4403,
-  SAN_FRANCISCO_SHOCK = 4404,
-  LOS_ANGELES_VALIANT = 4405,
-  LOS_ANGELES_GLADIATORS = 4406,
-  FLORIDA_MAYHEM = 4407,
-  SHANGHAI_DRAGONS = 4408,
-  SEOUL_DYNASTY = 4409,
-  LONDON_SPITFIRE = 4410,
-  CHENGDU_HUNTERS = 7692,
-  HANGZHOU_SPARK = 7693,
-  PARIS_ETERNAL = 7694,
-  TORONTO_DEFIANT = 7695,
-  VANCOUVER_TITANS = 7696,
-  WASHINGTON_JUSTICE = 7697,
-  ATLANTA_REIGN = 7698,
-  GUANGZHOU_CHARGE = 7699,
-};
-
-
-enum Locale {
-  DE_DE = 'de_DE',
-  EN_US = 'en_US',
-  EN_GB = 'en_GB',
-  ES_ES = 'es_ES',
-  ES_MX = 'es_MX',
-  FR_FR = 'fr_FR',
-  IT_IT = 'it_IT',
-  PT_BR = 'pt_BR',
-  PL_PL = 'pl_PL',
-  RU_RU = 'ru_RU',
-  KO_KR = 'ko_KR',
-  JA_JP = 'ja_JP',
-  ZH_TW = 'zh_TW',
-  ZH_CH = 'zh_CH', // ZH_CH is done via the useChina option.
-};
-
 export class OverwatchLeague {
   private locale: Locale;
   private apiBase: string;
   private token: string;
 
-  /**
-   *
-   * @param {Object} options
-   */
+  private matchCompare(a: any, b: any) {
+    return a.startDate - b.startDate;
+  }
+
   constructor({
-    locale = OverwatchLeague.Locales.EN_US,
+    locale = Locale.EN_US,
     token = '',
     useChina = false
   } = {}) {
@@ -129,10 +86,6 @@ export class OverwatchLeague {
     return this.getJSON(`/matches`);
   }
 
-  /**
-   *
-   * @param {number} matchID
-   */
   getMatch(matchID: number, expand?: string) {
     return this.getJSON(`/match/${matchID}`, expand);
   }
@@ -162,7 +115,7 @@ export class OverwatchLeague {
       this.getTeam(teamID)
         .then(data => {
           const schedule = data.schedule;
-          schedule.sort(_matchCompare);
+          schedule.sort(this.matchCompare);
           return resolve(
             schedule
               .filter((match: any) => match.state === OverwatchLeague.Match.State.CONCLUDED)
@@ -178,7 +131,7 @@ export class OverwatchLeague {
       this.getTeam(teamID)
         .then((data: any) => {
           const schedule = data.schedule;
-          schedule.sort(_matchCompare);
+          schedule.sort(this.matchCompare);
           return resolve(
             schedule.find((match: any) => match.state === OverwatchLeague.Match.State.PENDING)
           );
