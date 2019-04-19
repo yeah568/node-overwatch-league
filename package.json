@@ -1,6 +1,6 @@
 {
   "name": "node-overwatch-league",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "A Node wrapper for the Overwatch League API.",
   "homepage": "https://github.com/yeah568/node-overwatch-league",
   "author": {
@@ -20,13 +20,19 @@
     "@types/node-fetch": "^2.3.2",
     "husky": "^0.14.3",
     "jest": "^24.7.1",
-    "typescript": "^3.4.4"
+    "typescript": "^3.4.4",
+    "gts": "^0.9.0"
   },
   "scripts": {
-    "build": "tsc",
-    "prepare": "npm run build",
-    "precommit": "npm run build",
-    "test": "jest"
+    "prepare": "npm run compile",
+    "precommit": "npm run compile",
+    "test": "jest",
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc -p .",
+    "fix": "gts fix",
+    "pretest": "npm run compile",
+    "posttest": "npm run check"
   },
   "repository": "https://github.com/yeah568/node-overwatch-league.git",
   "jest": {

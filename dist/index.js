@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var node_fetch_1 = __importDefault(require("node-fetch"));
+var constants_1 = require("./constants");
 // Whatwg-url is a fallback for node <6.13.0
 var URL = require('url').URL || require('whatwg-url').URL;
-var constants_1 = require("./constants");
 var OverwatchLeague = /** @class */ (function () {
     function OverwatchLeague(_a) {
         var _b = _a === void 0 ? {} : _a, _c = _b.locale, locale = _c === void 0 ? constants_1.Locale.EN_US : _c, _d = _b.token, token = _d === void 0 ? '' : _d, _e = _b.useChina, useChina = _e === void 0 ? false : _e;
@@ -33,13 +33,13 @@ var OverwatchLeague = /** @class */ (function () {
         }
         Object.entries(params).forEach(function (_a) {
             var key = _a[0], value = _a[1];
-            return url.searchParams.append(key, value);
+            url.searchParams.append(key, value);
         });
         return node_fetch_1.default(url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Accept: 'application/json'
+                'Accept': 'application/json',
             }
         }).then(function (res) { return res.json(); });
     };
@@ -148,3 +148,4 @@ var OverwatchLeague = /** @class */ (function () {
     return OverwatchLeague;
 }());
 exports.OverwatchLeague = OverwatchLeague;
+//# sourceMappingURL=index.js.map

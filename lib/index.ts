@@ -1,8 +1,7 @@
 import fetch from 'node-fetch';
+import { TeamID, Locale } from './constants';
 // Whatwg-url is a fallback for node <6.13.0
 const URL = require('url').URL || require('whatwg-url').URL;
-
-import { TeamID, Locale } from './constants';
 
 interface BaseParams {
   token?: string;
@@ -43,13 +42,16 @@ export class OverwatchLeague {
     if (expand) {
       params.expand = expand;
     }
-    Object.entries(params).forEach(([key, value]: [string, string]) => url.searchParams.append(key, value));
+    Object.entries(params).forEach(
+      ([key, value]: [string, string]) => {
+        url.searchParams.append(key, value);
+      });
 
     return fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json'
+        'Accept': 'application/json',
       }
     }).then(res => res.json());
   }
@@ -140,9 +142,9 @@ export class OverwatchLeague {
     });
   }
 
-  public static teamIDs = TeamID;
+  static teamIDs = TeamID;
 
-  public static teamNames = {
+  static teamNames = {
     4523: 'Dallas Fuel',
     4524: 'Philadelphia Fusion',
     4525: 'Houston Outlaws',
@@ -165,9 +167,9 @@ export class OverwatchLeague {
     7699: 'Guangzhou Charge'
   };
 
-  public static Locales = Locale;
+  static Locales = Locale;
 
-  public static Match = {
+  static Match = {
     State: {
       PENDING: 'PENDING',
       CONCLUDED: 'CONCLUDED'
