@@ -1,3 +1,25 @@
+declare enum teamIDs {
+    DALLAS_FUEL = 4523,
+    PHILADELPHIA_FUSION = 4524,
+    HOUSTON_OUTLAWS = 4525,
+    BOSTON_UPRISING = 4402,
+    NEW_YORK_EXCELSIOR = 4403,
+    SAN_FRANCISCO_SHOCK = 4404,
+    LOS_ANGELES_VALIANT = 4405,
+    LOS_ANGELES_GLADIATORS = 4406,
+    FLORIDA_MAYHEM = 4407,
+    SHANGHAI_DRAGONS = 4408,
+    SEOUL_DYNASTY = 4409,
+    LONDON_SPITFIRE = 4410,
+    CHENGDU_HUNTERS = 7692,
+    HANGZHOU_SPARK = 7693,
+    PARIS_ETERNAL = 7694,
+    TORONTO_DEFIANT = 7695,
+    VANCOUVER_TITANS = 7696,
+    WASHINGTON_JUSTICE = 7697,
+    ATLANTA_REIGN = 7698,
+    GUANGZHOU_CHARGE = 7699
+}
 export declare class OverwatchLeague {
     private locale;
     private apiBase;
@@ -38,28 +60,7 @@ export declare class OverwatchLeague {
     getMaps(): Promise<any>;
     lastMatchForTeam(teamID: number): Promise<{}>;
     nextMatchForTeam(teamID: number): Promise<{}>;
-    static teamIDs: {
-        DALLAS_FUEL: number;
-        PHILADELPHIA_FUSION: number;
-        HOUSTON_OUTLAWS: number;
-        BOSTON_UPRISING: number;
-        NEW_YORK_EXCELSIOR: number;
-        SAN_FRANCISCO_SHOCK: number;
-        LOS_ANGELES_VALIANT: number;
-        LOS_ANGELES_GLADIATORS: number;
-        FLORIDA_MAYHEM: number;
-        SHANGHAI_DRAGONS: number;
-        SEOUL_DYNASTY: number;
-        LONDON_SPITFIRE: number;
-        CHENGDU_HUNTERS: number;
-        HANGZHOU_SPARK: number;
-        PARIS_ETERNAL: number;
-        TORONTO_DEFIANT: number;
-        VANCOUVER_TITANS: number;
-        WASHINGTON_JUSTICE: number;
-        ATLANTA_REIGN: number;
-        GUANGZHOU_CHARGE: number;
-    };
+    static teamIDs: typeof teamIDs;
     static teamNames: {
         4523: string;
         4524: string;
@@ -104,3 +105,4 @@ export declare class OverwatchLeague {
         };
     };
 }
+export {};

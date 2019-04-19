@@ -9,6 +9,30 @@ var URL = require('url').URL || require('whatwg-url').URL;
 function _matchCompare(a, b) {
     return a.startDate - b.startDate;
 }
+var teamIDs;
+(function (teamIDs) {
+    teamIDs[teamIDs["DALLAS_FUEL"] = 4523] = "DALLAS_FUEL";
+    teamIDs[teamIDs["PHILADELPHIA_FUSION"] = 4524] = "PHILADELPHIA_FUSION";
+    teamIDs[teamIDs["HOUSTON_OUTLAWS"] = 4525] = "HOUSTON_OUTLAWS";
+    teamIDs[teamIDs["BOSTON_UPRISING"] = 4402] = "BOSTON_UPRISING";
+    teamIDs[teamIDs["NEW_YORK_EXCELSIOR"] = 4403] = "NEW_YORK_EXCELSIOR";
+    teamIDs[teamIDs["SAN_FRANCISCO_SHOCK"] = 4404] = "SAN_FRANCISCO_SHOCK";
+    teamIDs[teamIDs["LOS_ANGELES_VALIANT"] = 4405] = "LOS_ANGELES_VALIANT";
+    teamIDs[teamIDs["LOS_ANGELES_GLADIATORS"] = 4406] = "LOS_ANGELES_GLADIATORS";
+    teamIDs[teamIDs["FLORIDA_MAYHEM"] = 4407] = "FLORIDA_MAYHEM";
+    teamIDs[teamIDs["SHANGHAI_DRAGONS"] = 4408] = "SHANGHAI_DRAGONS";
+    teamIDs[teamIDs["SEOUL_DYNASTY"] = 4409] = "SEOUL_DYNASTY";
+    teamIDs[teamIDs["LONDON_SPITFIRE"] = 4410] = "LONDON_SPITFIRE";
+    teamIDs[teamIDs["CHENGDU_HUNTERS"] = 7692] = "CHENGDU_HUNTERS";
+    teamIDs[teamIDs["HANGZHOU_SPARK"] = 7693] = "HANGZHOU_SPARK";
+    teamIDs[teamIDs["PARIS_ETERNAL"] = 7694] = "PARIS_ETERNAL";
+    teamIDs[teamIDs["TORONTO_DEFIANT"] = 7695] = "TORONTO_DEFIANT";
+    teamIDs[teamIDs["VANCOUVER_TITANS"] = 7696] = "VANCOUVER_TITANS";
+    teamIDs[teamIDs["WASHINGTON_JUSTICE"] = 7697] = "WASHINGTON_JUSTICE";
+    teamIDs[teamIDs["ATLANTA_REIGN"] = 7698] = "ATLANTA_REIGN";
+    teamIDs[teamIDs["GUANGZHOU_CHARGE"] = 7699] = "GUANGZHOU_CHARGE";
+})(teamIDs || (teamIDs = {}));
+;
 var OverwatchLeague = /** @class */ (function () {
     /**
      *
@@ -130,28 +154,7 @@ var OverwatchLeague = /** @class */ (function () {
                 .catch(function (err) { return console.log(err); });
         });
     };
-    OverwatchLeague.teamIDs = {
-        DALLAS_FUEL: 4523,
-        PHILADELPHIA_FUSION: 4524,
-        HOUSTON_OUTLAWS: 4525,
-        BOSTON_UPRISING: 4402,
-        NEW_YORK_EXCELSIOR: 4403,
-        SAN_FRANCISCO_SHOCK: 4404,
-        LOS_ANGELES_VALIANT: 4405,
-        LOS_ANGELES_GLADIATORS: 4406,
-        FLORIDA_MAYHEM: 4407,
-        SHANGHAI_DRAGONS: 4408,
-        SEOUL_DYNASTY: 4409,
-        LONDON_SPITFIRE: 4410,
-        CHENGDU_HUNTERS: 7692,
-        HANGZHOU_SPARK: 7693,
-        PARIS_ETERNAL: 7694,
-        TORONTO_DEFIANT: 7695,
-        VANCOUVER_TITANS: 7696,
-        WASHINGTON_JUSTICE: 7697,
-        ATLANTA_REIGN: 7698,
-        GUANGZHOU_CHARGE: 7699
-    };
+    OverwatchLeague.teamIDs = teamIDs;
     OverwatchLeague.teamNames = {
         4523: 'Dallas Fuel',
         4524: 'Philadelphia Fusion',

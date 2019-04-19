@@ -12,6 +12,29 @@ function _matchCompare(a: any, b: any) {
   return a.startDate - b.startDate;
 }
 
+enum TeamID {
+  DALLAS_FUEL = 4523,
+  PHILADELPHIA_FUSION = 4524,
+  HOUSTON_OUTLAWS = 4525,
+  BOSTON_UPRISING = 4402,
+  NEW_YORK_EXCELSIOR = 4403,
+  SAN_FRANCISCO_SHOCK = 4404,
+  LOS_ANGELES_VALIANT = 4405,
+  LOS_ANGELES_GLADIATORS = 4406,
+  FLORIDA_MAYHEM = 4407,
+  SHANGHAI_DRAGONS = 4408,
+  SEOUL_DYNASTY = 4409,
+  LONDON_SPITFIRE = 4410,
+  CHENGDU_HUNTERS = 7692,
+  HANGZHOU_SPARK = 7693,
+  PARIS_ETERNAL = 7694,
+  TORONTO_DEFIANT = 7695,
+  VANCOUVER_TITANS = 7696,
+  WASHINGTON_JUSTICE = 7697,
+  ATLANTA_REIGN = 7698,
+  GUANGZHOU_CHARGE = 7699,
+};
+
 export class OverwatchLeague {
   private locale: string;
   private apiBase: string;
@@ -33,10 +56,6 @@ export class OverwatchLeague {
     this.token = token;
   }
 
-  /**
-   *
-   * @param {string} path
-   */
   getJSON(path: string, expand?: string) {
     const url = new URL(`${this.apiBase}${path}`);
     const params: BaseParams = {};
@@ -66,15 +85,11 @@ export class OverwatchLeague {
     return this.getJSON('/teams');
   }
 
-  /**
-   *
-   * @param {number} teamID
-   */
-  getTeam(teamID: number) {
+  getTeam(teamID: TeamID) {
     return this.getJSON(`/team/${teamID}`);
   }
 
-  getTeamV2(teamID: number) {
+  getTeamV2(teamID: TeamID) {
     // Known expands:
     // schedule
     return this.getJSON(`/v2/team/${teamID}`);
@@ -124,7 +139,7 @@ export class OverwatchLeague {
     return this.getJSON(`/maps`);
   }
 
-  lastMatchForTeam(teamID: number) {
+  lastMatchForTeam(teamID: TeamID) {
     return new Promise(resolve => {
       this.getTeam(teamID)
         .then(data => {
@@ -140,7 +155,7 @@ export class OverwatchLeague {
     });
   }
 
-  nextMatchForTeam(teamID: number) {
+  nextMatchForTeam(teamID: TeamID) {
     return new Promise(resolve => {
       this.getTeam(teamID)
         .then((data: any) => {
@@ -154,29 +169,7 @@ export class OverwatchLeague {
     });
   }
 
-
-  public static teamIDs = {
-    DALLAS_FUEL: 4523,
-    PHILADELPHIA_FUSION: 4524,
-    HOUSTON_OUTLAWS: 4525,
-    BOSTON_UPRISING: 4402,
-    NEW_YORK_EXCELSIOR: 4403,
-    SAN_FRANCISCO_SHOCK: 4404,
-    LOS_ANGELES_VALIANT: 4405,
-    LOS_ANGELES_GLADIATORS: 4406,
-    FLORIDA_MAYHEM: 4407,
-    SHANGHAI_DRAGONS: 4408,
-    SEOUL_DYNASTY: 4409,
-    LONDON_SPITFIRE: 4410,
-    CHENGDU_HUNTERS: 7692,
-    HANGZHOU_SPARK: 7693,
-    PARIS_ETERNAL: 7694,
-    TORONTO_DEFIANT: 7695,
-    VANCOUVER_TITANS: 7696,
-    WASHINGTON_JUSTICE: 7697,
-    ATLANTA_REIGN: 7698,
-    GUANGZHOU_CHARGE: 7699
-  };
+  public static teamIDs = TeamID;
 
   public static teamNames = {
     4523: 'Dallas Fuel',
