@@ -47,5 +47,5 @@ Work in progress while the implementation is being fleshed out a bit more.
 The OverwatchLeague class contains some constants as properties to make working with the API a bit easier.
 
 * `OverwatchLeague.teamIDs`: A map of team names to IDs.
-  eg. `OverwatchLeague.teamIDs.VANCOUVER_TITANS` returns `7696`, the ID for Florida.
+  eg. `OverwatchLeague.teamIDs.VANCOUVER_TITANS` returns `7696`, the ID for the Vancouver Titans.
 * `OverwatchLeague.Match.State`: Match state. Either `PENDING` or `CONCLUDED`.
