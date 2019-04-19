@@ -9,9 +9,11 @@
     "url": "jamesliu.ca"
   },
   "files": ["lib"],
-  "main": "lib/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "keywords": ["overwatch"],
   "devDependencies": {
+    "@types/node-fetch": "^2.3.2",
     "eslint": "^4.1.0",
     "eslint-config-prettier": "^2.4.0",
     "eslint-config-xo": "^0.18.2",
@@ -23,7 +25,8 @@
     "typescript": "^3.4.4"
   },
   "scripts": {
-    "prepare": "tsc",
+    "build": "tsc",
+    "prepare": "npm run build",
     "pretest": "eslint .",
     "precommit": "lint-staged",
     "test": "jest"
