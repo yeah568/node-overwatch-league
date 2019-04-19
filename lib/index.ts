@@ -8,7 +8,7 @@ interface BaseParams {
   expand?: string;
 }
 
-function _matchCompare(a, b) {
+function _matchCompare(a: any, b: any) {
   return a.startDate - b.startDate;
 }
 
@@ -49,7 +49,7 @@ export class OverwatchLeague {
     if (expand) {
       params.expand = expand;
     }
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+    Object.entries(params).forEach(([key, value]: [string, string]) => url.searchParams.append(key, value));
 
     return fetch(url, {
       method: 'GET',

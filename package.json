@@ -8,49 +8,25 @@
     "email": "james@jamesliu.ca",
     "url": "jamesliu.ca"
   },
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "keywords": ["overwatch"],
+  "keywords": [
+    "overwatch"
+  ],
   "devDependencies": {
     "@types/node-fetch": "^2.3.2",
-    "eslint": "^4.1.0",
-    "eslint-config-prettier": "^2.4.0",
-    "eslint-config-xo": "^0.18.2",
-    "eslint-plugin-prettier": "^2.2.0",
     "husky": "^0.14.3",
-    "jest": "^22.0.6",
-    "lint-staged": "^4.2.1",
-    "prettier": "^1.7.0",
+    "jest": "^24.7.1",
     "typescript": "^3.4.4"
   },
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
-    "pretest": "eslint .",
-    "precommit": "lint-staged",
+    "precommit": "npm run build",
     "test": "jest"
-  },
-  "lint-staged": {
-    "*.js": ["eslint --fix", "git add"],
-    "*.json": ["prettier --write", "git add"]
-  },
-  "eslintConfig": {
-    "extends": ["xo", "prettier"],
-    "env": {
-      "jest": true,
-      "node": true
-    },
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "singleQuote": true,
-          "printWidth": 90
-        }
-      ]
-    },
-    "plugins": ["prettier"]
   },
   "repository": "https://github.com/yeah568/node-overwatch-league.git",
   "jest": {
